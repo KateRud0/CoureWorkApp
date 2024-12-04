@@ -1,5 +1,6 @@
 package com.example.courseworkapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Button
@@ -17,7 +18,7 @@ class RegActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_reg) // Подключаем макет для регистрации
-        /*
+
         // Инициализация FirebaseAuth
         auth = Firebase.auth
 
@@ -52,22 +53,25 @@ class RegActivity : AppCompatActivity() {
             .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     // Успешная регистрация
-                    Log.d("RegActivity", "createUserWithEmail:success")
-                    val user = auth.currentUser
-                    user?.let {
-                        updateUserProfile(it, username)
-                    }
+                    Log.d("Auth", "createUserWithEmail:success")
+                    //val user = auth.currentUser
+                    //user?.let {
+                        //updateUserProfile(it, username)
+                    //}
+                    val intent = Intent(this, MainActivity::class.java)
+                    startActivity(intent)
+                    finish()
                 } else {
                     // Ошибка регистрации
-                    Log.w("RegActivity", "createUserWithEmail:failure", task.exception)
-                    Toast.makeText(
-                        this, "Ошибка регистрации: ${task.exception?.message}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Log.w("Auth", "createUserWithEmail:failure", task.exception)
+                    //Toast.makeText(
+                        //this, "Ошибка регистрации: ${task.exception?.message}",
+                        //Toast.LENGTH_SHORT
+                    //).show()
                 }
             }
     }
-
+/*
     private fun updateUserProfile(user: FirebaseAuth, username: String) {
         val profileUpdates = userProfileChangeRequest {
             displayName = username
@@ -76,18 +80,18 @@ class RegActivity : AppCompatActivity() {
         user.currentUser?.updateProfile(profileUpdates)
             ?.addOnCompleteListener { task ->
                 if (task.isSuccessful) {
-                    Log.d("RegisterActivity", "User profile updated.")
+                    Log.d("Auth", "User profile updated.")
                     Toast.makeText(this, "Регистрация успешна!", Toast.LENGTH_SHORT).show()
                     finish() // Закрываем экран регистрации
                 } else {
-                    Log.w("RegisterActivity", "Profile update failed", task.exception)
+                    Log.w("Auth", "Profile update failed", task.exception)
                     Toast.makeText(
                         this, "Ошибка обновления профиля: ${task.exception?.message}",
                         Toast.LENGTH_SHORT
                     ).show()
                 }
             }
+        }
+*/
     }
-    */
-    }
-}
+

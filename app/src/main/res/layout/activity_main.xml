@@ -39,6 +39,7 @@
             />
 
         <ImageButton
+            android:id="@+id/buttonSettings"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="0dp"
