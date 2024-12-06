@@ -28,6 +28,12 @@
     <fragment
         android:id="@+id/loginFragment"
         android:name="com.example.courseworkapp.auth.LoginFragment"
-        android:label="Вход" />
+        android:label="Вход">
+        <action
+            android:id="@+id/action_loginFragment_to_mainGraph"
+            app:destination="@id/main_navigation" />
+    </fragment>
+
+    <include app:graph="@navigation/main_navigation" />
 
 </navigation>

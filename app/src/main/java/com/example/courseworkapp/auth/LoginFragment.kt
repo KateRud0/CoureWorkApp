@@ -8,6 +8,7 @@ import android.view.View
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import com.example.courseworkapp.R
 import com.google.firebase.auth.FirebaseAuth
 import com.example.courseworkapp.MainActivity
@@ -53,21 +54,16 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     // Авторизация успешна
                     Toast.makeText(context, "Вход выполнен!", Toast.LENGTH_SHORT).show()
                     Log.d("Test", "signInWithEmail:success")
-                    navigateToMainActivity()
+                    val navController = findNavController()
+                    navController.navigate(R.id.action_loginFragment_to_mainGraph)
 
                 } else {
                     // Ошибка авторизации
-                    //Toast.makeText(this, "Ошибка: ${task.exception?.message}", Toast.LENGTH_SHORT)
-                    //.show()
+                    Toast.makeText(context, "Неправильно введены имя пользователя или пароль.", Toast.LENGTH_SHORT).show()
                     Log.w("Test", "signInWithEmail:failure", task.exception)
                 }
             }
 
     }
-
-    private fun navigateToMainActivity() {
-        val intent = Intent(requireContext(), MainActivity::class.java)
-        startActivity(intent)
-        requireActivity().finish() // Закрыть текущую активность, чтобы пользователь не вернулся на LoginFragment
-    }
 }
+

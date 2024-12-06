@@ -68,7 +68,7 @@ class RegFragment : Fragment(R.layout.fragment_reg) {
     private fun navigateToLoginFragment() {
         val navController = requireActivity()
             .supportFragmentManager
-            .findFragmentById(R.id.authNavHostFragment)?.findNavController()
+            .findFragmentById(R.id.mainNavHostFragment)?.findNavController()
         navController?.navigate(R.id.action_registerFragment_to_loginFragment)
     }
 }

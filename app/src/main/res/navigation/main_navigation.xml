@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_navigation"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.example.courseworkapp.ui.HomeFragment"
+        android:label="Главная" >
+        <action
+            android:id="@+id/action_home_to_settings"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+
+   <!-- <fragment
+        android:id="@+id/roomFragment"
+        android:name="com.example.courseworkapp.ui.RoomFragment"
+        android:label="Комната" /> -->
+
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.courseworkapp.ui.SettingsFragment"
+        android:label="Настройки" >
+        <action
+            android:id="@+id/action_settings_to_home"
+            app:destination="@id/homeFragment" />
+    </fragment>
+
+</navigation>
