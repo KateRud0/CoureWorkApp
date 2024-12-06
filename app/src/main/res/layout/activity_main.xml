@@ -42,12 +42,12 @@
             android:id="@+id/buttonSettings"
             android:layout_width="50dp"
             android:layout_height="50dp"
-            android:layout_marginStart="0dp"
-            android:src="@drawable/ic_settings"
             android:layout_gravity="center_vertical"
+            android:layout_marginStart="0dp"
+            android:allowClickWhenDisabled="false"
             android:background="#1A1A1A"
             android:contentDescription="Настройки"
-            />
+            android:src="@drawable/ic_settings" />
     </LinearLayout>
 
     <LinearLayout

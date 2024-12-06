@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/auth_navigation"
+    app:startDestination="@id/startFragment">
+
+    <fragment
+        android:id="@+id/startFragment"
+        android:name="com.example.courseworkapp.auth.StartFragment"
+        android:label="Выбор действия">
+        <action
+            android:id="@+id/action_start_to_login"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_start_to_register"
+            app:destination="@id/regFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/regFragment"
+        android:name="com.example.courseworkapp.auth.RegFragment"
+        android:label="Регистрация">
+        <action
+            android:id="@+id/action_registerFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.courseworkapp.auth.LoginFragment"
+        android:label="Вход" />
+
+</navigation>

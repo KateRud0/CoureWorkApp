@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".auth.LoginFragment"
+    android:background="#1A1A1A">
+
+    <TextView
+        android:id="@+id/textSingUp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="240dp"
+        android:fontFamily="@font/montserrat_bold"
+        android:text="Вход"
+        android:textColor="#FFFFFF"
+        android:textSize="36sp"
+        />
+
+    <TextView
+        android:id="@+id/textViewEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="65dp"
+        android:layout_marginStart="25dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:textColor="#FFFFFF"
+        android:text="Email"
+        />
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginStart="25dp"
+        android:background="@drawable/paint_text_background"
+        android:layout_marginEnd="25dp"
+        android:ems="10"
+        android:inputType="text"
+        android:textSize="16sp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:textColorHint="#6C6C6C"
+        android:hint="Введите email"
+        />
+    <TextView
+        android:id="@+id/textViewPassword"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginStart="25dp"
+        android:textSize="16sp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:textColor="#FFFFFF"
+        android:text="Пароль"
+        />
+
+    <EditText
+        android:id="@+id/editTextPassword"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginStart="25dp"
+        android:background="@drawable/paint_text_background"
+        android:layout_marginEnd="25dp"
+        android:ems="10"
+        android:inputType="textPassword"
+        android:textSize="16sp"
+        android:paddingStart="12dp"
+        android:paddingEnd="12dp"
+        android:fontFamily="@font/montserrat_semibold"
+        android:textColorHint="#6C6C6C"
+        android:hint="Введите пароль"
+        />
+
+    <android.widget.Button
+        android:id="@+id/buttonSingIn"
+        android:layout_width="match_parent"
+        android:layout_height="58dp"
+        android:layout_marginTop="40dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/button_background2"
+        android:textColor="#1a1a1a"
+        android:textAllCaps="false"
+        android:textSize="18sp"
+        android:fontFamily="@font/montserrat_extrabold"
+        android:text="Войти"/>
+
+</LinearLayout>

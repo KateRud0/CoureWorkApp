@@ -26,13 +26,13 @@ class SettingsActivity : AppCompatActivity() {
         // Кнопка для выхода из аккаунта
         val buttonLogOut = findViewById<Button>(R.id.buttonLogOut)
         buttonLogOut.setOnClickListener {
-            Log.d("Auth", "LogOut: done")
+            Log.d("Test", "LogOut: done")
             Toast.makeText(this, "Вы вышли из аккаунта", Toast.LENGTH_SHORT).show()
             auth.signOut() // Выход из аккаунта
 
 
             // Переход на экран авторизации
-            val intent = Intent(this, StartActivity::class.java)
+            val intent = Intent(this, AuthActivity::class.java)
             intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(intent)
             finish()

@@ -11,9 +11,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CourseWorkApp"
-        tools:targetApi="31">
+        tools:targetApi="31"
+        tools:ignore="ObsoleteSdkInt">
+
         <activity
-            android:name=".StartActivity"
+            android:name=".AuthActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,14 +23,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-
-        <activity
-            android:name=".AuthActivity"
-            android:exported="true" />
-
-        <activity
-            android:name=".RegActivity"
-            android:exported="true" />
 
         <activity
             android:name=".MainActivity"

@@ -36,6 +36,17 @@
         android:layout_marginTop="12dp"
         android:layout_marginStart="18dp"/>
 
+    <TextView
+        android:id="@+id/roomTitle1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="XХ"
+        android:textColor="#1A1A1A"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/roomTitle" />
+
     <Button
         android:id="@+id/joinButton"
         android:layout_width="wrap_content"
@@ -45,4 +56,56 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
          />
+
+    <ImageButton
+        android:id="@+id/buttonGoBack"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:background="#000000"
+        android:contentDescription="Вернуться на глвный экран"
+        android:src="@drawable/ic_arrow_left"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/joinButton1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Перейти"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageButton
+        android:id="@+id/buttonGoBack2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:background="#000000"
+        android:contentDescription="Вернуться на глвный экран"
+        android:src="@drawable/ic_arrow_left"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/joinButton1" />
+
+    <ImageButton
+        android:id="@+id/buttonGoBack3"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:background="#000000"
+        android:contentDescription="Вернуться на глвный экран"
+        android:src="@drawable/ic_arrow_left"
+        app:layout_constraintStart_toEndOf="@+id/roomTitle1"
+        app:layout_constraintTop_toBottomOf="@+id/roomTitle" />
+
+    <ImageButton
+        android:id="@+id/buttonGoBack5"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_vertical"
+        android:background="#000000"
+        android:contentDescription="Вернуться на глвный экран"
+        android:src="@drawable/ic_arrow_left"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/buttonGoBack2" />
 </androidx.constraintlayout.widget.ConstraintLayout>
