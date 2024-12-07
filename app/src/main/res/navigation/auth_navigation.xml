@@ -21,8 +21,8 @@
         android:name="com.example.courseworkapp.auth.RegFragment"
         android:label="Регистрация">
         <action
-            android:id="@+id/action_registerFragment_to_loginFragment"
-            app:destination="@id/loginFragment" />
+            android:id="@+id/action_reg_to_home"
+            app:destination="@id/main_navigation" />
     </fragment>
 
     <fragment
@@ -30,7 +30,7 @@
         android:name="com.example.courseworkapp.auth.LoginFragment"
         android:label="Вход">
         <action
-            android:id="@+id/action_loginFragment_to_mainGraph"
+            android:id="@+id/action_login_to_home"
             app:destination="@id/main_navigation" />
     </fragment>
 

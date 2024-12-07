@@ -6,13 +6,18 @@ import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import com.example.courseworkapp.R
+import com.example.courseworkapp.viewmodel.UserViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 
 class SettingsFragment : Fragment(R.layout.fragment_settings) {
+
+    private val userViewModel: UserViewModel by activityViewModels()
 
     private lateinit var auth: FirebaseAuth
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,6 +44,11 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
             Toast.makeText(context, "Вы вышли из аккаунта", Toast.LENGTH_SHORT).show()
             auth.signOut()
             findNavController().navigate(R.id.auth_navigation)
+        }
+
+        val userNameTextView = view.findViewById<TextView>(R.id.textViewUserNameS)
+        userViewModel.userName.observe(viewLifecycleOwner) { name ->
+            userNameTextView.text = name
         }
 
     }

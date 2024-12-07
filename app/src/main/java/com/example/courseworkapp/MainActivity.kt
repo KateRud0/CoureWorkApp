@@ -3,16 +3,20 @@ package com.example.courseworkapp
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
-
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.NavigationUI
 import com.example.courseworkapp.R
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
 
 
 class MainActivity : AppCompatActivity() {
+
+    private val db = FirebaseFirestore.getInstance()
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -22,18 +26,26 @@ class MainActivity : AppCompatActivity() {
             .findFragmentById(R.id.mainNavHostFragment) as NavHostFragment
         val navController = navHostFragment.navController
 
-        /* // Кнопка для перехода на настройки
-        val buttonSettings = findViewById<ImageButton>(R.id.buttonSettings)
-        buttonSettings.setOnClickListener {
-            val intent = Intent(this, SettingsActivity::class.java)
-            startActivity(intent)
-        }*/
+        /*// Получение данных из Firestore
+        db.collection("rooms")
+            .get()
+            .addOnSuccessListener { documents ->
+                for (document in documents) {
+                    Log.d("FirestoreTest", "${document.id} => ${document.data}")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.w("FirestoreTest", "Error getting documents: ", exception)
+            }
 
-        // Настройка NavHostFragment
-
-
+        db.collection("testCollection").add(hashMapOf("key" to "value"))
+            .addOnSuccessListener {
+                Log.d("FirestoreTest", "Document added with ID: ${it.id}")
+            }
+            .addOnFailureListener { e ->
+                Log.w("FirestoreTest", "Error adding document", e)
+            }*/
     }
-
 
     override fun onStart() {
         super.onStart()

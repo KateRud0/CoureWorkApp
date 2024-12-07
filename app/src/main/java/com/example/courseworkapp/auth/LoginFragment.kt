@@ -55,7 +55,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
                     Toast.makeText(context, "Вход выполнен!", Toast.LENGTH_SHORT).show()
                     Log.d("Test", "signInWithEmail:success")
                     val navController = findNavController()
-                    navController.navigate(R.id.action_loginFragment_to_mainGraph)
+                    navController.navigate(R.id.action_login_to_home)
 
                 } else {
                     // Ошибка авторизации
