@@ -11,12 +11,13 @@
         <action
             android:id="@+id/action_home_to_settings"
             app:destination="@id/settingsFragment" />
+        <action
+            android:id="@+id/action_home_to_joinedRooms"
+            app:destination="@id/joinedRoomsFragment" />
+        <action
+            android:id="@+id/action_home_to_createdRooms"
+            app:destination="@id/createdRoomsFragment" />
     </fragment>
-
-   <!-- <fragment
-        android:id="@+id/roomFragment"
-        android:name="com.example.courseworkapp.ui.RoomFragment"
-        android:label="Комната" /> -->
 
     <fragment
         android:id="@+id/settingsFragment"
@@ -24,6 +25,24 @@
         android:label="Настройки" >
         <action
             android:id="@+id/action_settings_to_home"
+            app:destination="@id/homeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/createdRoomsFragment"
+        android:name="com.example.courseworkapp.ui.CreatedRoomsFragment"
+        android:label="Созданные комнаты" >
+        <action
+            android:id="@+id/action_createdRooms_to_home"
+            app:destination="@id/homeFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/joinedRoomsFragment"
+        android:name="com.example.courseworkapp.ui.JoinedRoomsFragment"
+        android:label="Присоединенные комнаты" >
+        <action
+            android:id="@+id/action_joinedRooms_to_home"
             app:destination="@id/homeFragment" />
     </fragment>
 

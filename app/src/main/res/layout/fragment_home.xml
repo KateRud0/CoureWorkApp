@@ -118,6 +118,7 @@
             />
 
         <ImageButton
+            android:id="@+id/buttonCreatedRooms"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="0dp"
@@ -172,6 +173,7 @@
             />
 
         <ImageButton
+            android:id="@+id/buttonJoinedRooms"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="0dp"

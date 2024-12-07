@@ -21,12 +21,21 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         super.onViewCreated(view, savedInstanceState)
 
         val settingsButton = view.findViewById<ImageButton>(R.id.buttonSettings)
+        val CreatedRoomsButton = view.findViewById<ImageButton>(R.id.buttonCreatedRooms)
+        val JoinedRoomsButton = view.findViewById<ImageButton>(R.id.buttonJoinedRooms)
 
         settingsButton.setOnClickListener {
             findNavController().navigate(R.id.action_home_to_settings)
         }
 
-    }
+        CreatedRoomsButton.setOnClickListener {
+            findNavController().navigate(R.id.action_home_to_createdRooms)
+        }
 
+        JoinedRoomsButton.setOnClickListener {
+            findNavController().navigate(R.id.action_home_to_joinedRooms)
+        }
+
+    }
 
 }
