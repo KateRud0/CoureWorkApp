@@ -24,12 +24,12 @@
             />
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/textViewUserName"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:layout_gravity="center_vertical"
-            android:layout_marginStart="6dp"
+            android:layout_marginStart="10dp"
             android:textSize="20sp"
             android:fontFamily="@font/montserrat_semibold"
             android:textColor="#FFFFFF"
