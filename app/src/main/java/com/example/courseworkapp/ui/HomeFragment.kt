@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.courseworkapp.R
 import androidx.navigation.fragment.findNavController
+import com.example.courseworkapp.data.RoomStyle
 import com.example.courseworkapp.ui.dialogs.AddRoomDialog
 import com.example.courseworkapp.ui.dialogs.SearchRoomDialog
 import com.google.firebase.auth.FirebaseAuth
@@ -76,6 +77,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     Log.e("FirestoreError", "Error fetching user data", e)
                 }
         }
+
 
     }
 

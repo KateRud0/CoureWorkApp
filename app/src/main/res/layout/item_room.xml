@@ -5,23 +5,24 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="380dp"
     android:layout_height="180dp"
-    android:background="@drawable/bg_room"
+    android:background="@drawable/bg_room_violet"
+    android:id="@+id/viewItemRoom"
     android:clipChildren="true">
 
     <!-- Фоновое изображение -->
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="388dp"
-        android:layout_height="349dp"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="-60dp"
-        android:layout_marginEnd="-130dp"
-        android:src="@drawable/svg_room_back_0"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
-
     <!-- Другие элементы поверх фона -->
+
+    <ImageView
+        android:id="@+id/imageViewBG"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:paddingEnd="0dp"
+        android:paddingTop="0dp"
+        android:src="@drawable/rb_moon_yellow"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <TextView
         android:id="@+id/roomTitle"
