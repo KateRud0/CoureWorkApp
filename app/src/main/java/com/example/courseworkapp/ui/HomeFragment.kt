@@ -3,12 +3,15 @@ package com.example.courseworkapp.ui
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import com.example.courseworkapp.R
 import androidx.navigation.fragment.findNavController
+import com.example.courseworkapp.ui.dialogs.AddRoomDialog
+import com.example.courseworkapp.ui.dialogs.SearchRoomDialog
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.example.courseworkapp.viewmodel.UserViewModel
@@ -32,6 +35,8 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         val settingsButton = view.findViewById<ImageButton>(R.id.buttonSettings)
         val CreatedRoomsButton = view.findViewById<ImageButton>(R.id.buttonCreatedRooms)
         val JoinedRoomsButton = view.findViewById<ImageButton>(R.id.buttonJoinedRooms)
+        val addRoomButton = view.findViewById<Button>(R.id.buttonAddRoomH)
+        val searchRoomButton = view.findViewById<Button>(R.id.buttonSearchRoomH)
 
         val userNameTextView = view.findViewById<TextView>(R.id.textViewUserName)
 
@@ -45,6 +50,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         JoinedRoomsButton.setOnClickListener {
             findNavController().navigate(R.id.action_home_to_joinedRooms)
+        }
+
+        addRoomButton.setOnClickListener {
+            val dialog = AddRoomDialog()
+            dialog.show(parentFragmentManager, "CreateRoomDialog")
+        }
+
+        searchRoomButton.setOnClickListener {
+            val dialog = SearchRoomDialog()
+            dialog.show(parentFragmentManager, "CreateRoomDialog")
         }
 
         val currentUser = auth.currentUser
