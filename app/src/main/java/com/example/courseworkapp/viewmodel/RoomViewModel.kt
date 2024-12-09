@@ -1,5 +1,8 @@
 package com.example.courseworkapp.viewmodel
 
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.courseworkapp.data.Room
 import com.google.firebase.auth.FirebaseAuth
@@ -9,6 +12,68 @@ import java.util.UUID
 class RoomViewModel : ViewModel() {
     private val db = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()
+
+    private val _createdRooms = MutableLiveData<List<Room>>()
+    val createdRooms: LiveData<List<Room>> get() = _createdRooms
+
+    private val _joinedRooms = MutableLiveData<List<Room>>()
+    val joinedRooms: LiveData<List<Room>> get() = _joinedRooms
+
+    fun getCreatedRooms() {
+        val userId = auth.currentUser?.uid ?: return
+        db.collection("rooms")
+            .whereEqualTo("ownerId", userId)
+            .get()
+            .addOnSuccessListener { documents ->
+                val rooms = documents.map { it.toObject(Room::class.java) }
+                _createdRooms.postValue(rooms)
+            }
+    }
+
+    fun getJoinedRooms() {
+        val userId = auth.currentUser?.uid ?: return
+        db.collection("rooms")
+            .whereArrayContains("participants", userId)
+            .get()
+            .addOnSuccessListener { documents ->
+                val rooms = documents.map { it.toObject(Room::class.java) }
+                _joinedRooms.postValue(rooms)
+            }
+    }
+
+    fun listenToCreatedRooms() {
+        val userId = auth.currentUser?.uid ?: return
+        db.collection("rooms")
+            .whereEqualTo("ownerId", userId)
+            .addSnapshotListener { snapshot, error ->
+                if (error != null) {
+                    Log.e("RoomViewModel", "Error listening to rooms: ", error)
+                    return@addSnapshotListener
+                }
+
+                if (snapshot != null) {
+                    val rooms = snapshot.documents.mapNotNull { it.toObject(Room::class.java) }
+                    _createdRooms.postValue(rooms)
+                }
+            }
+    }
+
+    fun listenToJoinedRooms() {
+        val userId = auth.currentUser?.uid ?: return
+        db.collection("rooms")
+            .whereEqualTo("participants", userId)
+            .addSnapshotListener { snapshot, error ->
+                if (error != null) {
+                    Log.e("RoomViewModel", "Error listening to rooms: ", error)
+                    return@addSnapshotListener
+                }
+
+                if (snapshot != null) {
+                    val rooms = snapshot.documents.mapNotNull { it.toObject(Room::class.java) }
+                    _createdRooms.postValue(rooms)
+                }
+            }
+    }
 
     fun createRoom(
         name: String,
@@ -44,7 +109,8 @@ class RoomViewModel : ViewModel() {
         onSuccess: (Room) -> Unit,
         onFailure: (String) -> Unit
     ) {
-        val currentUserId = auth.currentUser?.uid ?: return onFailure("Пользователь не авторизован")
+        val currentUserId =
+            auth.currentUser?.uid ?: return onFailure("Пользователь не авторизован")
 
         db.collection("rooms")
             .whereEqualTo("connectionCode", roomCode)
@@ -77,8 +143,10 @@ class RoomViewModel : ViewModel() {
                 onFailure(e.message ?: "Ошибка при присоединении к комнате")
             }
     }
-        fun generateConnectionCode(): String {
-            val charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
-            return "#" + (1..6).map { charset.random() }.joinToString("")
-        }
+
+    fun generateConnectionCode(): String {
+        val charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"
+        return "#" + (1..6).map { charset.random() }.joinToString("")
     }
+
+}

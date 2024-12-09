@@ -6,7 +6,7 @@
 
     <fragment
         android:id="@+id/startFragment"
-        android:name="com.example.courseworkapp.auth.StartFragment"
+        android:name="com.example.courseworkapp.ui.auth.StartFragment"
         android:label="Выбор действия">
         <action
             android:id="@+id/action_start_to_login"
@@ -18,7 +18,7 @@
 
     <fragment
         android:id="@+id/regFragment"
-        android:name="com.example.courseworkapp.auth.RegFragment"
+        android:name="com.example.courseworkapp.ui.auth.RegFragment"
         android:label="Регистрация">
         <action
             android:id="@+id/action_reg_to_home"
@@ -27,7 +27,7 @@
 
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.courseworkapp.auth.LoginFragment"
+        android:name="com.example.courseworkapp.ui.auth.LoginFragment"
         android:label="Вход">
         <action
             android:id="@+id/action_login_to_home"

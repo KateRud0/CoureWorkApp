@@ -1,4 +1,4 @@
-package com.example.courseworkapp.auth
+package com.example.courseworkapp.ui.auth
 
 import android.os.Bundle
 import android.util.Log

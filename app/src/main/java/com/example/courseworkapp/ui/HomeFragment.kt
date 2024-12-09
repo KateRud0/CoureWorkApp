@@ -8,11 +8,15 @@ import android.widget.ImageButton
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.ViewModelProvider
 import com.example.courseworkapp.R
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.courseworkapp.data.RoomStyle
 import com.example.courseworkapp.ui.dialogs.AddRoomDialog
 import com.example.courseworkapp.ui.dialogs.SearchRoomDialog
+import com.example.courseworkapp.viewmodel.RoomViewModel
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.example.courseworkapp.viewmodel.UserViewModel
@@ -23,6 +27,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val db = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()
     private val userViewModel: UserViewModel by activityViewModels()
+
+    private lateinit var viewModel: RoomViewModel
+    private lateinit var createdRoomsAdapter: RoomAdapter
+    private lateinit var joinedRoomsAdapter: RoomAdapter
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
@@ -77,6 +85,42 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     Log.e("FirestoreError", "Error fetching user data", e)
                 }
         }
+
+        val createdRoomsRecyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewCreatedRoomsHome)
+        val joinedRoomsRecyclerView = view.findViewById<RecyclerView>(R.id.recyclerViewJoinedRoomsHome)
+
+        viewModel = ViewModelProvider(this).get(RoomViewModel::class.java)
+
+        // Настройка адаптеров
+        createdRoomsAdapter = RoomAdapter(isHome = true, isCreatedRooms = true)
+        joinedRoomsAdapter = RoomAdapter(isHome = true, isCreatedRooms = false)
+
+        // Настройка LayoutManager и Adapter для созданных комнат
+        createdRoomsRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        createdRoomsRecyclerView.adapter = createdRoomsAdapter
+
+        // Настройка LayoutManager и Adapter для присоединенных комнат
+        joinedRoomsRecyclerView.layoutManager =
+            LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
+        joinedRoomsRecyclerView.adapter = joinedRoomsAdapter
+
+        //viewModel.listenToCreatedRooms()
+        //viewModel.listenToJoinedRooms()
+
+        // Обновление данных для созданных комнат
+        viewModel.createdRooms.observe(viewLifecycleOwner) { rooms ->
+            createdRoomsAdapter.updateRooms(rooms)
+        }
+
+        // Обновление данных для присоединенных комнат
+        viewModel.joinedRooms.observe(viewLifecycleOwner) { rooms ->
+            joinedRoomsAdapter.updateRooms(rooms)
+        }
+
+        // Получение данных
+        viewModel.getCreatedRooms()
+        viewModel.getJoinedRooms()
 
 
     }

@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".auth.RegFragment"
+    tools:context=".ui.auth.RegFragment"
     android:background="#1A1A1A"
     android:orientation="vertical">
 
