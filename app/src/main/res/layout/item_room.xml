@@ -9,10 +9,6 @@
     android:id="@+id/viewItemRoom"
     android:clipChildren="true">
 
-    <!-- Фоновое изображение -->
-
-    <!-- Другие элементы поверх фона -->
-
     <ImageView
         android:id="@+id/imageViewBG"
         android:layout_width="wrap_content"
@@ -49,7 +45,7 @@
         app:layout_constraintTop_toBottomOf="@+id/roomTitle" />
 
     <android.widget.Button
-        android:id="@+id/joinButton"
+        android:id="@+id/buttonOpenRoom"
         android:layout_width="wrap_content"
         android:layout_height="50dp"
         android:layout_marginEnd="16dp"
@@ -104,7 +100,7 @@
         app:layout_constraintTop_toTopOf="@+id/textRoomCode" />
 
     <ImageButton
-        android:id="@+id/buttonGoBack3"
+        android:id="@+id/buttonListofPeople"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="@android:color/transparent"

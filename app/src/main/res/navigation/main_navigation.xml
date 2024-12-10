@@ -17,6 +17,9 @@
         <action
             android:id="@+id/action_home_to_createdRooms"
             app:destination="@id/createdRoomsFragment" />
+        <action
+            android:id="@+id/action_home_to_room"
+            app:destination="@id/roomFragment" />
     </fragment>
 
     <fragment
@@ -26,6 +29,7 @@
         <action
             android:id="@+id/action_settings_to_home"
             app:destination="@id/homeFragment" />
+
     </fragment>
 
     <fragment
@@ -35,6 +39,9 @@
         <action
             android:id="@+id/action_createdRooms_to_home"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_createdRooms_to_room"
+            app:destination="@id/roomFragment" />
     </fragment>
 
     <fragment
@@ -44,6 +51,28 @@
         <action
             android:id="@+id/action_joinedRooms_to_home"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_joinedRooms_to_room"
+            app:destination="@id/roomFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/roomFragment"
+        android:name="com.example.courseworkapp.ui.RoomFragment"
+        android:label="Комната" >
+        <argument
+            android:name="roomId"
+            app:argType="string" />
+        <argument
+            android:name="roomName"
+            app:argType="string" />
+        <argument
+            android:name="connectionCode"
+            app:argType="string" />
+        <argument
+            android:name="isOwner"
+            app:argType="boolean" />
+
     </fragment>
 
 </navigation>

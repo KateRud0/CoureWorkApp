@@ -12,96 +12,24 @@ import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.example.courseworkapp.R
 import com.example.courseworkapp.data.Room
-import com.example.courseworkapp.data.RoomStyle
+import com.example.courseworkapp.utils.RoomStyleManager
 
 class RoomAdapter(
     private val isHome: Boolean,
     private val isCreatedRooms: Boolean
 ) : RecyclerView.Adapter<RoomAdapter.RoomViewHolder>() {
 
-    private val roomStyles = listOf(
-        RoomStyle(
-            background = R.drawable.bg_room_yellow,
-            vectorDrawable = R.drawable.rb_moon_yellow,
-            vectorPaddingTop = 0,
-            textColor = R.color.elemYellow,
-        ),
-        RoomStyle(
-            background = R.drawable.bg_room_yellow,
-            vectorDrawable = R.drawable.rb_wave_yellow,
-            vectorPaddingTop = 0,
-            textColor = R.color.elemYellow,
-        ),
-        RoomStyle(
-            background = R.drawable.bg_room_yellow,
-            vectorDrawable = R.drawable.rb_flower_yllow,
-            vectorPaddingTop = 10,
-            textColor = R.color.elemYellow,
-        ),
-        RoomStyle(
-            background = R.drawable.bg_room_red,
-            vectorDrawable = R.drawable.rb_moon_red,
-            vectorPaddingTop = 0,
-            textColor = R.color.elemRed,
-        ),
-        RoomStyle(
-            background = R.drawable.bg_room_red,
-            vectorDrawable = R.drawable.rb_wave_red,
-            vectorPaddingTop = 0,
-            textColor = R.color.elemRed,
-        ),
-        RoomStyle(
-            background = R.drawable.bg_room_red,
-            vectorDrawable = R.drawable.rb_flower_red,
-            vectorPaddingTop = 10,
-            textColor = R.color.elemRed,
-        ),
-        RoomStyle(
-            background = R.drawable.bg_room_green,
-            vectorDrawable = R.drawable.rb_moon_green,
-            vectorPaddingTop = 0,
-            textColor = R.color.elemGreen,
-        ),
-        RoomStyle(
-            background = R.drawable.bg_room_green,
-            vectorDrawable = R.drawable.rb_wave_green,
-            vectorPaddingTop = 0,
-            textColor = R.color.elemGreen,
-        ),
-        RoomStyle(
-            background = R.drawable.bg_room_green,
-            vectorDrawable = R.drawable.rb_flower_green,
-            vectorPaddingTop = 10,
-            textColor = R.color.elemGreen,
-        ),
-        RoomStyle(
-            background = R.drawable.bg_room_violet,
-            vectorDrawable = R.drawable.rb_moon_violet,
-            vectorPaddingTop = 0,
-            textColor = R.color.elemViolet,
-        ),
-        RoomStyle(
-            background = R.drawable.bg_room_violet,
-            vectorDrawable = R.drawable.rb_wave_violet,
-            vectorPaddingTop = 0,
-            textColor = R.color.elemViolet,
-        ),
-        RoomStyle(
-            background = R.drawable.bg_room_violet,
-            vectorDrawable = R.drawable.rb_flower_violet,
-            vectorPaddingTop = 10,
-            textColor = R.color.elemViolet,
-        ),
-    )
     private val rooms = mutableListOf<Room>()
 
-    fun setRooms(newRooms: List<Room>) {
-        rooms.clear()
-        rooms.addAll(newRooms)
-        notifyDataSetChanged()
-    }
+    // Листенеры для кнопок
+    var onCopyCodeClick: ((String) -> Unit)? = null
+    var onOpenRoomClick: ((String, String, String) -> Unit)? = null
+    var onChangeCodeClick: ((String) -> Unit)? = null
+    var onChangeRoomNameClick: ((String, String) -> Unit)? = null
+
 
     fun updateRooms(newRooms: List<Room>) {
+
         rooms.clear()
         rooms.addAll(newRooms)
         notifyDataSetChanged()
@@ -111,11 +39,12 @@ class RoomAdapter(
         val room = view.findViewById<View>(R.id.viewItemRoom)
         val imageViewBG = view.findViewById<ImageView>(R.id.imageViewBG)
         val roomTitle = view.findViewById<TextView>(R.id.roomTitle)
-        val joinButton = view.findViewById<Button>(R.id.joinButton)
+        val joinButton = view.findViewById<Button>(R.id.buttonOpenRoom)
         val textRoomCode = view.findViewById<TextView>(R.id.textRoomCode)
         val editCodeButton = view.findViewById<ImageButton>(R.id.buttonChangeCode)
         val editRoomButton = view.findViewById<ImageButton>(R.id.buttonChangeRoom)
         val textNumberOfParticipants = view.findViewById<TextView>(R.id.NumberofPeople)
+        val copyCodeButton = view.findViewById<ImageButton>(R.id.buttonCopyCode)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RoomViewHolder {
@@ -125,14 +54,32 @@ class RoomAdapter(
     }
 
     override fun onBindViewHolder(holder: RoomViewHolder, position: Int) {
-        val style = roomStyles.random() // Выбор стиля из списка
+
         val room = rooms[position]  // Получаем данные комнаты
+        val style = RoomStyleManager.getRoomSlyle(room.id) // Выбор стиля из списка
         val layoutParams = holder.itemView.layoutParams as ViewGroup.MarginLayoutParams
 
         // Устанавливаем данные комнаты
         holder.roomTitle.text = room.name
         holder.textRoomCode.text = room.connectionCode
         holder.textNumberOfParticipants.text = room.participants.size.toString()
+
+        // Устанавливаем обработчики событий
+        holder.copyCodeButton.setOnClickListener {
+            onCopyCodeClick?.invoke(room.connectionCode)
+        }
+
+        holder.joinButton.setOnClickListener {
+            onOpenRoomClick?.invoke(room.id, room.name, room.connectionCode)
+        }
+
+        holder.editCodeButton.setOnClickListener {
+            onChangeCodeClick?.invoke(room.id)
+        }
+
+        holder.editRoomButton.setOnClickListener {
+            onChangeRoomNameClick?.invoke(room.id, room.name)
+        }
 
         if (isHome) {
             layoutParams.width = dpToPx(290, holder.itemView.context) // Ширина комнаты

@@ -1,11 +1,15 @@
 package com.example.courseworkapp.ui
 
+import android.content.ClipData
+import android.content.ClipboardManager
+import android.content.Context
 import android.os.Bundle
 import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.ViewModelProvider
@@ -15,6 +19,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.courseworkapp.data.RoomStyle
 import com.example.courseworkapp.ui.dialogs.AddRoomDialog
+import com.example.courseworkapp.ui.dialogs.ChangeRoomNameDialog
 import com.example.courseworkapp.ui.dialogs.SearchRoomDialog
 import com.example.courseworkapp.viewmodel.RoomViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -121,6 +126,52 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         // Получение данных
         viewModel.getCreatedRooms()
         viewModel.getJoinedRooms()
+
+        createdRoomsAdapter.onCopyCodeClick = { code ->
+            val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            clipboard.setPrimaryClip(ClipData.newPlainText("Room Code", code))
+            Toast.makeText(requireContext(), "Code copied to clipboard", Toast.LENGTH_SHORT).show()
+        }
+
+        createdRoomsAdapter.onOpenRoomClick = { roomId, roomName, connectionCode ->
+            val action = R.id.action_home_to_room
+            val bundle = Bundle().apply {
+                putString("roomId", roomId)          // Передача roomId
+                putString("roomName", roomName)      // Передача имени комнаты
+                putString("connectionCode", connectionCode) // Передача кода комнаты
+                putBoolean("isOwner", true)
+            }
+            findNavController().navigate(action, bundle)
+        }
+
+        createdRoomsAdapter.onChangeCodeClick = { roomId ->
+            val newCode = viewModel.generateConnectionCode()
+            viewModel.updateRoomCode(roomId, newCode)
+        }
+
+        createdRoomsAdapter.onChangeRoomNameClick = { roomId, currentName ->
+            val dialog = ChangeRoomNameDialog(roomId, currentName) { newName ->
+                viewModel.updateRoomName(roomId, newName)
+            }
+            dialog.show(parentFragmentManager, "ChangeRoomNameDialog")
+        }
+
+        joinedRoomsAdapter.onCopyCodeClick = { code ->
+            val clipboard = requireContext().getSystemService(Context.CLIPBOARD_SERVICE) as ClipboardManager
+            clipboard.setPrimaryClip(ClipData.newPlainText("Room Code", code))
+            Toast.makeText(requireContext(), "Code copied to clipboard", Toast.LENGTH_SHORT).show()
+        }
+
+        joinedRoomsAdapter.onOpenRoomClick = { roomId, roomName, connectionCode ->
+            val action = R.id.action_home_to_room
+            val bundle = Bundle().apply {
+                putString("roomId", roomId)          // Передача roomId
+                putString("roomName", roomName)      // Передача имени комнаты
+                putString("connectionCode", connectionCode) // Передача кода комнаты
+                putBoolean("isOwner", false)
+            }
+            findNavController().navigate(action, bundle)
+        }
 
 
     }

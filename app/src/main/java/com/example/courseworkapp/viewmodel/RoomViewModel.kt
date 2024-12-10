@@ -41,6 +41,66 @@ class RoomViewModel : ViewModel() {
             }
     }
 
+    fun updateRoomCode(roomId: String, newCode: String) {
+        db.collection("rooms").document(roomId)
+            .update("connectionCode", newCode)
+            .addOnSuccessListener {
+                Log.d("RoomViewModel", "Room code updated successfully")
+            }
+            .addOnFailureListener { e ->
+                Log.e("RoomViewModel", "Error updating room code", e)
+            }
+    }
+
+    fun updateRoomName(roomId: String, newName: String) {
+        db.collection("rooms").document(roomId)
+            .update("name", newName)
+            .addOnSuccessListener {
+                Log.d("RoomViewModel", "Room name updated successfully")
+            }
+            .addOnFailureListener { e ->
+                Log.e("RoomViewModel", "Error updating room name", e)
+            }
+    }
+
+    fun getRoomDetails(roomId: String, onComplete: (ownerId: String, participants: List<String>) -> Unit) {
+        db.collection("rooms").document(roomId).get()
+            .addOnSuccessListener { document ->
+                val ownerId = document.getString("ownerId") ?: return@addOnSuccessListener
+                val participants = document.get("participants") as? List<String> ?: emptyList()
+                onComplete(ownerId, participants)
+            }
+            .addOnFailureListener { error ->
+                Log.e("RoomViewModel", "Ошибка получения данных комнаты", error)
+            }
+    }
+
+    fun removeParticipant(roomId: String, participantId: String) {
+        val roomRef = db.collection("rooms").document(roomId)
+
+        roomRef.get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val participants = document.get("participants") as? List<String> ?: return@addOnSuccessListener
+
+                    // Удаляем участника
+                    val updatedParticipants = participants.filter { it != participantId }
+
+                    roomRef.update("participants", updatedParticipants)
+                        .addOnSuccessListener {
+                            Log.d("RoomViewModel", "Participant removed successfully")
+                        }
+                        .addOnFailureListener { e ->
+                            Log.e("RoomViewModel", "Failed to remove participant", e)
+                        }
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.e("RoomViewModel", "Error fetching room", e)
+            }
+    }
+
+
     fun listenToCreatedRooms() {
         val userId = auth.currentUser?.uid ?: return
         db.collection("rooms")
