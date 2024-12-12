@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="380dp"
+    android:layout_height="150dp"
+    android:background="@drawable/bg_room_violet"
+    android:id="@+id/viewItemRoom"
+    android:clipChildren="true">
+
+    <ImageView
+        android:id="@+id/imageViewBG"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:paddingEnd="0dp"
+        android:paddingTop="0dp"
+        android:src="@drawable/gb_cloud"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <TextView
+        android:id="@+id/roomTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Группа Х"
+        android:fontFamily="@font/montserrat_semibold"
+        android:textSize="20sp"
+        android:textColor="#1A1A1A"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="12dp"
+        android:layout_marginStart="18dp"/>
+
+    <TextView
+        android:id="@+id/NumberofPeople"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/montserrat_semibold"
+        android:text="5/5"
+        android:textColor="#1A1A1A"
+        android:textSize="16sp"
+        app:layout_constraintStart_toStartOf="@+id/roomTitle"
+        app:layout_constraintTop_toBottomOf="@+id/roomTitle" />
+
+    <android.widget.Button
+        android:id="@+id/buttonOpenRoom"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/bg_button_room"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="Перейти"
+        android:textAllCaps="false"
+        android:textColor="#DCC1FF"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+
+        app:layout_constraintStart_toStartOf="parent"/>
+
+
+
+    <TextView
+        android:id="@+id/textRoomCode"
+        android:layout_width="90dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="2dp"
+        android:background="@drawable/bg_button_room"
+        android:gravity="center"
+        android:fontFamily="@font/montserrat_medium"
+        android:text="#00FF00"
+        android:textAllCaps="false"
+        android:textColor="#DCC1FF"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+         />
+
+    <ImageView
+        android:id="@+id/buttonListofPeople"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:background="@android:color/transparent"
+        android:contentDescription="Вернуться на глвный экран"
+        android:src="@drawable/ic_people_alt"
+        app:layout_constraintStart_toEndOf="@+id/NumberofPeople"
+        app:layout_constraintTop_toBottomOf="@+id/roomTitle" />
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="76dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

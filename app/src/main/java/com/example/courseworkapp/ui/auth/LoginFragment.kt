@@ -1,4 +1,4 @@
-package com.example.courseworkapp.auth
+package com.example.courseworkapp.ui.auth
 
 import android.content.Intent
 import android.os.Bundle

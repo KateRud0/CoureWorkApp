@@ -2,4 +2,11 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="elemViolet">#DCC1FF</color>
+    <color name="elemRed">#FF8E6D</color>
+    <color name="elemYellow">#FFE078</color>
+    <color name="elemGreen">#D4F550</color>
+    <color name="taskCreated">#885AEF</color>
+    <color name="taskActive">#378904</color>
+    <color name="taskCompleted">#D94310</color>
 </resources>

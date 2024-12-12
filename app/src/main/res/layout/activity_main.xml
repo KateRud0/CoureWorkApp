@@ -9,4 +9,5 @@
     android:name="androidx.navigation.fragment.NavHostFragment"
     app:navGraph="@navigation/auth_navigation"
     app:defaultNavHost="true"
-    tools:layout="@layout/fragment_start" />
+    tools:layout="@layout/fragment_start"
+    android:background="@android:color/transparent"/>

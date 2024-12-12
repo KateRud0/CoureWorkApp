@@ -43,7 +43,7 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <android.widget.Button
-        android:id="@+id/button1"
+        android:id="@+id/buttonAddRoomCR"
         android:layout_width="match_parent"
         android:layout_height="50dp"
         android:layout_marginTop="12dp"
@@ -57,7 +57,7 @@
         android:text="+ Добавить комнату"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/verticalRecyclerView"
+        android:id="@+id/recyclerViewCreatedRooms"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginStart="16dp"
