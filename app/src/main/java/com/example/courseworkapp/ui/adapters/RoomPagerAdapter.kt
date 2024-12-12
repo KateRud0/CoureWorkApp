@@ -1,9 +1,10 @@
-package com.example.courseworkapp.ui
+package com.example.courseworkapp.ui.adapters
 
 import android.os.Bundle
-import android.provider.Settings.Global.putString
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
+import com.example.courseworkapp.ui.ParticipantsFragment
+import com.example.courseworkapp.ui.TasksFragment
 
 class RoomPagerAdapter(
     fragment: Fragment,

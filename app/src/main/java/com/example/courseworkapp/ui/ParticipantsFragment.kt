@@ -8,6 +8,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.courseworkapp.R
+import com.example.courseworkapp.ui.adapters.ParticipantAdapter
 import com.example.courseworkapp.viewmodel.RoomViewModel
 import com.example.courseworkapp.viewmodel.UserViewModel
 

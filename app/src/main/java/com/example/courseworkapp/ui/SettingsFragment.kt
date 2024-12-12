@@ -36,7 +36,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         val logOutButton = view.findViewById<Button>(R.id.buttonLogOut)
 
         goBackButton.setOnClickListener {
-            findNavController().navigate(R.id.action_settings_to_home)
+            findNavController().popBackStack()
         }
 
         logOutButton.setOnClickListener {

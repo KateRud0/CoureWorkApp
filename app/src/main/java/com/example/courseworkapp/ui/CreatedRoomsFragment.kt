@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.courseworkapp.R
+import com.example.courseworkapp.ui.adapters.RoomAdapter
 import com.example.courseworkapp.ui.dialogs.AddRoomDialog
 import com.example.courseworkapp.ui.dialogs.ChangeRoomNameDialog
 import com.example.courseworkapp.viewmodel.RoomViewModel
@@ -87,7 +88,7 @@ class CreatedRoomsFragment : Fragment(R.layout.fragment_created_rooms) {
 
 
         homeButton.setOnClickListener {
-            findNavController().navigate(R.id.action_createdRooms_to_home)
+            findNavController().popBackStack()
         }
 
         addRoomButton.setOnClickListener {

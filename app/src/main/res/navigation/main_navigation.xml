@@ -2,11 +2,13 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main_navigation"
-    app:startDestination="@id/homeFragment">
+    app:startDestination="@id/homeFragment"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.courseworkapp.ui.HomeFragment"
+        tools:layout="@layout/fragment_home"
         android:label="Главная" >
         <action
             android:id="@+id/action_home_to_settings"
@@ -25,20 +27,14 @@
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.courseworkapp.ui.SettingsFragment"
-        android:label="Настройки" >
-        <action
-            android:id="@+id/action_settings_to_home"
-            app:destination="@id/homeFragment" />
-
-    </fragment>
+        tools:layout="@layout/fragment_settings"
+        android:label="Настройки" />
 
     <fragment
         android:id="@+id/createdRoomsFragment"
         android:name="com.example.courseworkapp.ui.CreatedRoomsFragment"
+        tools:layout="@layout/fragment_created_rooms"
         android:label="Созданные комнаты" >
-        <action
-            android:id="@+id/action_createdRooms_to_home"
-            app:destination="@id/homeFragment" />
         <action
             android:id="@+id/action_createdRooms_to_room"
             app:destination="@id/roomFragment" />
@@ -47,10 +43,8 @@
     <fragment
         android:id="@+id/joinedRoomsFragment"
         android:name="com.example.courseworkapp.ui.JoinedRoomsFragment"
+        tools:layout="@layout/fragment_joined_rooms"
         android:label="Присоединенные комнаты" >
-        <action
-            android:id="@+id/action_joinedRooms_to_home"
-            app:destination="@id/homeFragment" />
         <action
             android:id="@+id/action_joinedRooms_to_room"
             app:destination="@id/roomFragment" />
@@ -59,6 +53,7 @@
     <fragment
         android:id="@+id/roomFragment"
         android:name="com.example.courseworkapp.ui.RoomFragment"
+        tools:layout="@layout/fragment_room"
         android:label="Комната" >
         <argument
             android:name="roomId"
@@ -68,6 +63,49 @@
             app:argType="string" />
         <argument
             android:name="connectionCode"
+            app:argType="string" />
+        <argument
+            android:name="isOwner"
+            app:argType="boolean" />
+        <action
+            android:id="@+id/action_room_to_addEditTasks"
+            app:destination="@id/addEditTasksFragment" />
+        <action
+            android:id="@+id/action_room_to_task"
+            app:destination="@id/taskDetailsFragment" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/addEditTasksFragment"
+        android:name="com.example.courseworkapp.ui.AddEditTasksFragment"
+        tools:layout="@layout/fragment_add_edit_task"
+        android:label="Комната" >
+        <argument
+            android:name="roomId"
+            app:argType="string" />
+        <argument
+            android:name="taskId"
+            app:argType="string" />
+
+    </fragment>
+
+    <fragment
+        android:id="@+id/taskDetailsFragment"
+        android:name="com.example.courseworkapp.ui.TaskDetailsFragment"
+        tools:layout="@layout/fragment_task_details"
+        android:label="Комната" >
+        <argument
+            android:name="roomId"
+            app:argType="string" />
+        <argument
+            android:name="taskId"
+            app:argType="string" />
+        <argument
+            android:name="taskName"
+            app:argType="string" />
+        <argument
+            android:name="taskDescription"
             app:argType="string" />
         <argument
             android:name="isOwner"

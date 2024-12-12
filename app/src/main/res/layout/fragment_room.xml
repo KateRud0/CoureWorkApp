@@ -30,7 +30,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageButton
-        android:id="@+id/buttonGoHomeCR"
+        android:id="@+id/buttonGoBackRoom"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_gravity="center_vertical"

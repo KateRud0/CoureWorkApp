@@ -12,8 +12,13 @@
         android:id="@+id/recyclerViewParticipants"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginVertical="15dp"
+        android:layout_marginHorizontal="16dp"
         android:scrollbars="vertical"
-        />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <android.widget.Button
         android:id="@+id/buttonAddTask"

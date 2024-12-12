@@ -5,9 +5,7 @@ import android.content.ClipboardManager
 import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.Toast
@@ -16,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.courseworkapp.R
+import com.example.courseworkapp.ui.adapters.RoomAdapter
 import com.example.courseworkapp.ui.dialogs.SearchRoomDialog
 import com.example.courseworkapp.viewmodel.RoomViewModel
 
@@ -73,7 +72,7 @@ class JoinedRoomsFragment : Fragment(R.layout.fragment_joined_rooms) {
         }
 
         homeButton.setOnClickListener {
-            findNavController().navigate(R.id.action_joinedRooms_to_home)
+            findNavController().popBackStack()
         }
 
         searchRoomButton.setOnClickListener {

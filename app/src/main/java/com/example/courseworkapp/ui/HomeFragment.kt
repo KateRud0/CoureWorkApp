@@ -17,7 +17,7 @@ import com.example.courseworkapp.R
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.courseworkapp.data.RoomStyle
+import com.example.courseworkapp.ui.adapters.RoomAdapter
 import com.example.courseworkapp.ui.dialogs.AddRoomDialog
 import com.example.courseworkapp.ui.dialogs.ChangeRoomNameDialog
 import com.example.courseworkapp.ui.dialogs.SearchRoomDialog

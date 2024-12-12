@@ -2,13 +2,14 @@ package com.example.courseworkapp.ui
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Button
+import android.widget.ImageButton
 import android.widget.TextView
+import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.courseworkapp.R
+import com.example.courseworkapp.ui.adapters.RoomPagerAdapter
 
 
 class RoomFragment : Fragment(R.layout.fragment_room) {
@@ -56,6 +57,12 @@ class RoomFragment : Fragment(R.layout.fragment_room) {
             viewPager.setCurrentItem(1, true) // Переключение на вторую страницу
             buttonTasks.setBackgroundResource(R.drawable.bg_button_room_2)
             buttonParticipants.setBackgroundResource(R.drawable.bg_button_room_1)
+        }
+
+        val goBack = view.findViewById<ImageButton>(R.id.buttonGoBackRoom)
+
+        goBack.setOnClickListener {
+            findNavController().popBackStack()
         }
 
 

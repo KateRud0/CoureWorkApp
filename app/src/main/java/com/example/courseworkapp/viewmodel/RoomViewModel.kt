@@ -5,6 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.courseworkapp.data.Room
+import com.example.courseworkapp.data.Task
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.UUID
@@ -101,40 +102,6 @@ class RoomViewModel : ViewModel() {
     }
 
 
-    fun listenToCreatedRooms() {
-        val userId = auth.currentUser?.uid ?: return
-        db.collection("rooms")
-            .whereEqualTo("ownerId", userId)
-            .addSnapshotListener { snapshot, error ->
-                if (error != null) {
-                    Log.e("RoomViewModel", "Error listening to rooms: ", error)
-                    return@addSnapshotListener
-                }
-
-                if (snapshot != null) {
-                    val rooms = snapshot.documents.mapNotNull { it.toObject(Room::class.java) }
-                    _createdRooms.postValue(rooms)
-                }
-            }
-    }
-
-    fun listenToJoinedRooms() {
-        val userId = auth.currentUser?.uid ?: return
-        db.collection("rooms")
-            .whereEqualTo("participants", userId)
-            .addSnapshotListener { snapshot, error ->
-                if (error != null) {
-                    Log.e("RoomViewModel", "Error listening to rooms: ", error)
-                    return@addSnapshotListener
-                }
-
-                if (snapshot != null) {
-                    val rooms = snapshot.documents.mapNotNull { it.toObject(Room::class.java) }
-                    _createdRooms.postValue(rooms)
-                }
-            }
-    }
-
     fun createRoom(
         name: String,
         roomCode: String,
@@ -203,6 +170,63 @@ class RoomViewModel : ViewModel() {
                 onFailure(e.message ?: "Ошибка при присоединении к комнате")
             }
     }
+
+    fun saveTask(roomId: String, task: Task) {
+        val taskRef = db.collection("rooms").document(roomId).collection("tasks").document(task.id)
+        taskRef.set(task)
+            .addOnSuccessListener {
+                Log.d("RoomViewModel", "Task saved successfully")
+            }
+            .addOnFailureListener { e ->
+                Log.e("RoomViewModel", "Failed to save task", e)
+            }
+    }
+
+    fun getTaskDetails(taskId: String): LiveData<Task> {
+        val taskLiveData = MutableLiveData<Task>()
+        db.collectionGroup("tasks").whereEqualTo("id", taskId).get()
+            .addOnSuccessListener { snapshot ->
+                snapshot.documents.firstOrNull()?.toObject(Task::class.java)?.let {
+                    taskLiveData.postValue(it)
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.e("RoomViewModel", "Failed to fetch task details", e)
+            }
+        return taskLiveData
+    }
+
+    fun getTasks(roomId: String): LiveData<List<Task>> {
+        val tasksLiveData = MutableLiveData<List<Task>>()
+
+        db.collection("rooms").document(roomId).collection("tasks")
+            .get()
+            .addOnSuccessListener { querySnapshot ->
+                val tasks = querySnapshot.documents.mapNotNull { it.toObject(Task::class.java) }
+                tasksLiveData.postValue(tasks)
+            }
+            .addOnFailureListener { e ->
+                Log.e("RoomViewModel", "Ошибка получения заданий: ", e)
+            }
+
+        return tasksLiveData
+    }
+
+    fun deleteTask(taskId: String, roomId: String) {
+        db.collection("rooms").document(roomId).collection("tasks").document(taskId)
+            .delete()
+            .addOnSuccessListener {
+                // Логика после успешного удаления
+                Log.d("RoomViewModel", "Task deleted successfully")
+            }
+            .addOnFailureListener { e ->
+                Log.e("RoomViewModel", "Error deleting task", e)
+            }
+    }
+
+
+
+
 
     fun generateConnectionCode(): String {
         val charset = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"

@@ -1,4 +1,4 @@
-package com.example.courseworkapp.ui
+package com.example.courseworkapp.ui.adapters
 
 import android.content.Context
 import android.view.LayoutInflater

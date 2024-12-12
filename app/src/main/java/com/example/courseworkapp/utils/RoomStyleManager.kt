@@ -21,7 +21,7 @@ class RoomStyleManager {
             RoomStyle(
                 background = R.drawable.bg_room_yellow,
                 vectorDrawable = R.drawable.rb_flower_yllow,
-                vectorPaddingTop = 10,
+                vectorPaddingTop = 15,
                 textColor = R.color.elemYellow,
             ),
             RoomStyle(
@@ -39,7 +39,7 @@ class RoomStyleManager {
             RoomStyle(
                 background = R.drawable.bg_room_red,
                 vectorDrawable = R.drawable.rb_flower_red,
-                vectorPaddingTop = 10,
+                vectorPaddingTop = 15,
                 textColor = R.color.elemRed,
             ),
             RoomStyle(
@@ -57,7 +57,7 @@ class RoomStyleManager {
             RoomStyle(
                 background = R.drawable.bg_room_green,
                 vectorDrawable = R.drawable.rb_flower_green,
-                vectorPaddingTop = 10,
+                vectorPaddingTop = 15,
                 textColor = R.color.elemGreen,
             ),
             RoomStyle(
@@ -75,7 +75,7 @@ class RoomStyleManager {
             RoomStyle(
                 background = R.drawable.bg_room_violet,
                 vectorDrawable = R.drawable.rb_flower_violet,
-                vectorPaddingTop = 10,
+                vectorPaddingTop = 15,
                 textColor = R.color.elemViolet,
             ),
         )
